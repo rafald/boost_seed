@@ -1,0 +1,52 @@
+#import os ;
+#local BOOST_ROOT = [ os.environ BOOST_ROOT ] ;
+#use-project boost : $(BOOST_ROOT) ;
+
+import testing ;
+
+project test
+    : requirements
+    <source>/boost//headers # boost.testing
+    #<use>/netlib//headers
+    <include>..
+
+    <dependency>/boost//system
+    <source>/boost//filesystem 
+    <source>/boost//thread
+    <source>/boost//date_time
+    <source>/boost//regex
+    <source>/boost//unit_test_framework
+
+    <define>NOMINMAX
+    #<use>/pthreads
+    <toolset>gcc:<cxxflags>-std=c++11
+    <link>shared # static
+   #<c++-template-depth>256
+   #<variant>debug:<define>BOOST_NETWORK_DEBUG
+   
+    : default-build debug
+;
+
+unit-test http_netlib_transport_test
+    : http_netlib_transport_test.cpp 
+    : <os>linux:<testing.launcher>valgrind
+;
+
+run client.cpp
+   : 127.0.0.1 8443
+;
+
+#Every single metatarget in Boost.Build, when built, produces two things: 
+#- actual targets (corresponding to files) 
+#- set of properties that must be propagated to dependents. These 
+#are known as usage requirements. 
+    
+# <source> tries to consume the produced targets, and adds usage requirements. 
+# <dependency> sets a dependency on the produced targets, and also adds usage requirements. 
+# <use> only sets usage requirements 
+
+#Now, because the 'headers' metatarget never produces any real file, only 
+#usage requirements, all three are exactly the same. 
+
+#cpp-pch pch : ../THTTPProtocol.hpp ;
+
