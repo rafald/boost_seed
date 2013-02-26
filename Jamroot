@@ -32,4 +32,4 @@ project
 ;
 
 
-exe rgsproxy : proxy.cpp ;
+exe executable_X : [ glob *.cpp ] ;
