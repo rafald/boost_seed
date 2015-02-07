@@ -31,6 +31,7 @@ using boostbook
 
 ##path-constant BOOST_INCLUDE : /home/raf/b43/include ;
 
+using clang ;
 using gcc ;
 
 using xsltproc : /usr/bin/xsltproc ;

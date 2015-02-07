@@ -1,9 +1,9 @@
-BOOST_ROOT = $(.boost-build-file:D)/boost_1_53_0 ;
+BOOST_ROOT ?= $(.boost-build-file:D)/boost ;
 ECHO "boost-build.jam::BOOST_ROOT = " $(BOOST_ROOT) ;
 BOOST_BUILD = [ MATCH --boost-build=(.*) : $(ARGV) ] ;
 #RLD BOOST_BUILD ?= tools/build/v2 ;
 
-BOOST_BUILD ?= $(BOOST_ROOT)/tools/build/v2 ;
+BOOST_BUILD ?= $(BOOST_ROOT)/tools/build/src ; # tools/build/v2 ;
 #BOOST_BUILD ?= git/boost-svn/tools/build/v2 ;
 
 ECHO "boost-build.jam::BOOST_BUILD = " $(BOOST_BUILD) ;
