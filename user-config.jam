@@ -18,8 +18,8 @@ using boostbook
 #RLD d local BOOST_ROOT = [ os.environ BOOST_ROOT ] ;
 #use-project boost : /home/rdzbek/c++/boost_1_51_0/ ;
 
-#import boost ;
-#boost.use-project ;
+import boost ;
+boost.use-project ;
 #using boost : 1.43  : <include>/home/raf/b43/include <library>/home/raf/b43/lib <layout>system ; #<build-id>"DUPA"
 #using boost : 1.44  : <root>/media/P3_p/ProfileP3/Platform/trunk/tmp/staging/armv5te-oe-linux-uclibcgnueabi/usr/include/ <layout>system ; #<build-id>"DUPA"
 #using boost : 1.45 : <root>/home/rafu/boost_1_45_0 <layout>system ; #<build-id>"DUPA"
