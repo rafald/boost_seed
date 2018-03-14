@@ -1,0 +1,38 @@
+import notfile ;
+#  not executed
+notfile write_version_t : @write_version ;
+actions write_version
+{
+    echo "writing version file from write_version action"
+    ./write_version.sh
+    touch "wrote"
+}
+
+path-constant JAMROOT_TOP : . ;
+
+Echo [ SHELL "readlink -f ." ] ;
+#path-constant PRJ_DIR : [ SHELL "readlink -f ." ] ;
+#Echo [ SHELL "$(PRJ_DIR)/write_version.sh" ] ;
+#Echo [ SHELL "$(TOP)/write_version.sh" ] ;
+
+#SHELL $(JAMROOT_TOP)"/write_version.sh" ;
+
+#Echo [ SHELL $(JAMROOT_TOP)"/write_version.sh" ] ;
+Echo [ SHELL "./write_version.sh" ] ; # runs the script from Jamfile dir /not Jamroot dir/
+
+#alias simple_match : : : :  <include>c++/simple_match/include ;
+#alias simple_match
+#    : # no sources
+#    : # no build requirements
+#    : # no default build
+#    : <include>c++/simple_match/include ;
+# or intrusive header-only library
+#project simple_match : usage-requirements <include>c++/simple_match/include ;
+#alias mylib ;
+
+use-project /googlemock : develop/c++/googletest/googlemock ;
+use-project /googletest : develop/c++/googletest/googletest ;
+use-project /googlebenchmark : develop/c++/benchmark ;
+use-project /gperftools : develop/c++/gperftools ;
+#use-project /simple_match : . ;
+

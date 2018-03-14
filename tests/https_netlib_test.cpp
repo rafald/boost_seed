@@ -28,8 +28,8 @@ struct MyConfig {
 };
 BOOST_GLOBAL_FIXTURE( MyConfig );
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-BOOST_AUTO_TEST_SUITE(???_tests)
-BOOST_AUTO_TEST_CASE(test_???) {
-   ???
+BOOST_AUTO_TEST_SUITE(XXX_tests)
+BOOST_AUTO_TEST_CASE(test_XXX) {
+   // XXX
 }
 BOOST_AUTO_TEST_SUITE_END()

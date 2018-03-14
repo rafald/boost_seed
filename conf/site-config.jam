@@ -1,0 +1,73 @@
+ECHO "Including site-config... " ;
+
+project site-config ;
+import os ;
+
+if [ os.name ] = CYGWIN
+{
+   lib zlib : : <file>/usr/lib/libz.a ;
+}
+else if [ os.name ] = NT
+{
+   lib zlib : : <file>C:/cygwin/home/rdzbek/c++/ist/sdk/zlib-1.2.5/lib/zlib.lib ;
+   #alias openssl : : #<file>C:/cygwin/home/rdzbek/c++/ist/sdk/openssl/OpenSSL-Win32/lib/VC/static/libeay32MT.lib
+   #: : <linkflags>"/LIBPATH:C:/cygwin/home/rdzbek/c++/ist/sdk/openssl/OpenSSL-Win32/lib/" <include>C:/cygwin/home/rdzbek/c++/ist/sdk/openssl/OpenSSL-Win32/include ;
+  # required for openssl on windows
+  lib ssleay32 : : <name>ssleay32 ;
+  lib libeay32 : : <name>libeay32 ;
+  lib advapi32 : : <name>Advapi32 ;
+  lib user32 : : <name>User32 ;
+  lib shell32 : : <name>shell32 ;
+  lib gdi32 : : <name>gdi32 ;
+   #lib zlib : : <name>libz ;
+
+   # socket libraries on windows
+   lib wsock32 : : <name>wsock32 ;
+   lib ws2_32 : : <name>ws2_32 ;
+}
+else
+{
+lib zlib : : <name>z ;
+
+local boost-library-search-path =
+<search>/opt/local/lib
+<search>/usr/lib
+<search>/usr/local/lib
+<search>/sw/lib
+;
+
+lib xboost_thread : : <target-os>darwin <name>boost_thread-mt $(boost-library-search-path) ;
+
+lib xboost_thread : : <name>boost_thread ;
+
+# openssl on linux/bsd/macos etc.
+lib crypto : : <name>crypto ;
+lib ssl : : <name>ssl ;
+
+# time functions used on linux require librt
+lib librt : : <name>rt ;
+
+lib libsocket : : <use>libnsl <name>socket <link>shared <search>/usr/sfw/lib ;
+lib libnsl : : <name>nsl <link>shared <search>/usr/sfw/lib ;
+
+lib tcmalloc : : <name>tcmalloc ;
+
+# GeoIP shared library
+lib GeoIP : : <name>GeoIP ;
+
+#sudo apt-get install libbz2-dev
+
+lib bzlib : : <name>bz2 ;
+# /usr/lib/x86_64-linux-gnu/libbz2.a
+}
+
+#lib zlib   : : <file>C:/cygwin/home/rdzbek/c++/ist/sdk/zlib-1.2.5/lib/zlib.lib ;
+#lib zlib : : <file>/usr/lib/libz.a ;
+#TODO site config//zlib
+
+
+# /usr/lib/x86_64-linux-gnu/libz.a
+# sudo apt-get install libbz2-dev
+# lib z ;
+
+ECHO "site-config DONE." ;

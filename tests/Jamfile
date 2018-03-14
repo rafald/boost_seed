@@ -1,12 +1,14 @@
 #import os ;
 #local BOOST_ROOT = [ os.environ BOOST_ROOT ] ;
 #use-project boost : $(BOOST_ROOT) ;
+import boost ;
+boost.use-project ;
 
 import testing ;
 
 project test
     : requirements
-    <source>/boost//headers # boost.testing
+    <implicit-dependency>/boost//headers # boost.testing
     #<use>/netlib//headers
     <include>..
 
@@ -28,14 +30,14 @@ project test
 ;
 
 unit-test http_netlib_transport_test
-    : http_netlib_transport_test.cpp 
+    : https_netlib_test.cpp #http_netlib_transport_test.cpp 
     #: https_netlib_test.cpp 
     : <os>linux:<testing.launcher>valgrind
 ;
 
-run client.cpp
-   : 127.0.0.1 8443
-;
+#run client.cpp
+#   : 127.0.0.1 8443
+#;
 
 #Every single metatarget in Boost.Build, when built, produces two things: 
 #- actual targets (corresponding to files) 

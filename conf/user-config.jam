@@ -1,0 +1,41 @@
+#import boost ;
+#import os ;
+
+##path-constant BOOST_INCLUDE : /home/raf/b43/include ;
+#RLD d local BOOST_ROOT = [ os.environ BOOST_ROOT ] ;
+
+#boost.use-project ;
+#boost.use-project ; #1.35 ;
+
+#TODO boost.use-project ; #1.35 ;
+#use-project boost : $(BOOST_BUILD) ;
+#use-project boost : /home/raf12/develop/c++/modular_boost ;
+#use-project boost : /home/rdzbek/c++/boost_1_51_0/ ;
+
+#using boost : 1.43  : <include>/home/raf/b43/include <library>/home/raf/b43/lib <layout>system ; #<build-id>"DUPA"
+#using boost : 1.43  : <include>/home/raf/b43/include <library>/home/raf/b43/lib <layout>system #<build-id>"DUPA"
+#using boost : 1.44  : <root>/home/rafu/boost_1_44_0/stage/lib/ <layout>system ; #<build-id>"DUPA"
+#using boost : 1.44  : <root>/media/P3_p/ProfileP3/Platform/trunk/tmp/staging/armv5te-oe-linux-uclibcgnueabi/usr/include/ <layout>system ; #<build-id>"DUPA"
+#using boost : 1.45 : <root>/home/rafu/boost_1_45_0 <layout>system ; #<build-id>"DUPA"
+#using boost : boost_1_44_0  : <layout>system <include>/media/P3_p/ProfileP3/Platform/trunk/tmp/staging/armv5te-oe-linux-uclibcgnueabi/usr/include/ <library>/media/P3_p/ProfileP3/Platform/trunk/tmp/staging/armv5te-oe-linux-uclibcgnueabi/usr/lib ;
+
+using boostbook
+  : /home/rdzbek/c++/git/boost-svn/tools/boostbook/docbook-xsl-1.75.2
+  : /home/rdzbek/c++/git/boost-svn/tools/boostbook/docbook-dtd-4.2
+;
+
+using clang : : : <cxxflags>-fcolor-diagnostics ; # "-stdlib=libc++ " ;
+using clang : 3.8 : /usr/bin/clang++-3.8 : <cxxflags>-fcolor-diagnostics ; # "-stdlib=libc++ " ;
+
+using doxygen : /usr/bin/doxygen ;
+
+using fop : /home/raf12/develop/c++/modular_boost/libs/ratio/test/fop-0.94/fop : : /usr/bin/java ;
+
+using gcc : : : <cxxflags>"-fdiagnostics-color -D_GLIBCXX_CONCEPT_CHECKS " ; # -fconcepts !!! breaks google's benchmark
+using gcc : 5 : /usr/bin/g++-5 : <cxxflags>"-fdiagnostics-color -D_GLIBCXX_CONCEPT_CHECKS " ; # "-fconcepts -fgnu-tm -stdlib=libc++ -fsanitize=memory -fsanitize=address -fsanitize=undefined"
+
+using mpi ;
+
+using python : 3.6 : /usr/bin/python3.6 ;
+
+using xsltproc : /usr/bin/xsltproc ;
